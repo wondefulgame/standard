@@ -15,6 +15,7 @@
   - [3.12. Error Handling](#error-handling)
   - [3.13. Testing Standards](#testing-standards)
   - [3.14. Version Control](#version-control)
+  - [3.15. AI Tool Usage Guidelines](#ai-tool-usage)
 
 <a name="php"></a>
 # 3. PHP Coding Standards
@@ -491,4 +492,119 @@
 1. <font color=bc0008>【Required】</font>Keep commits focused and atomic.
 
     <font color=977919>Note:</font>Each commit should represent a single logical change.
+
+## 3.15. AI Tool Usage Guidelines
+
+1. <font color=bc0008>【Required】</font>Only use AI tools (ChatGPT, Cursor) when you have a clear understanding of the code and requirements.
+
+    <font color=977919>Note:</font>AI tools should complement your development process, not replace critical thinking and understanding.
+
+    <font color=29965b>Good example:</font>
+    ```php
+    // Using AI for:
+    // - Code formatting and style improvements
+    // - Debugging specific error messages
+    // - Learning best practices and patterns
+    // - Generating repetitive boilerplate code
+    // - Documentation improvements
+    // - Unit test suggestions
+    ```
+
+    <font color=fa4113>Bad example:</font>
+    ```php
+    // Using AI for:
+    // - Writing critical security code
+    // - Implementing complex business logic without review
+    // - Handling sensitive/proprietary code
+    // - Making architectural decisions
+    // - Writing code you don't understand
+    ```
+
+1. <font color=bc0008>【Required】</font>Always review and test AI-generated code thoroughly.
+
+    <font color=977919>Note:</font>AI tools should be treated as assistants, not replacements for understanding your codebase.
+
+    <font color=29965b>Good example:</font>
+    ```php
+    // 1. Review generated code for:
+    //    - Security vulnerabilities
+    //    - Performance implications
+    //    - Compliance with coding standards
+    //    - Business logic correctness
+    
+    // 2. Write comprehensive tests:
+    public function testAiGeneratedFeature(): void
+    {
+        // Edge cases
+        $this->assertThrows(InvalidInputException::class, fn() => $this->service->process(null));
+        
+        // Happy path
+        $result = $this->service->process($validInput);
+        $this->assertEquals($expected, $result);
+        
+        // Boundary conditions
+        $this->assertValidLimits($result);
+    }
+    ```
+
+1. <font color=bc0008>【Required】</font>Document when AI tools were used for significant code changes.
+
+    <font color=977919>Note:</font>Transparency about AI usage helps with code review and maintenance.
+
+    <font color=29965b>Good example:</font>
+    ```php
+    /**
+     * This method was refactored with AI assistance on 2024-03-14
+     * Changes were reviewed and tested by [Developer Name]
+     * 
+     * AI Usage Details:
+     * - Performance optimization of database queries
+     * - Added input validation
+     * - Generated unit tests
+     * 
+     * Review Notes:
+     * - Validated against security checklist
+     * - Load tested with 1000 concurrent users
+     * - Approved by senior developer
+     */
+    public function optimizedMethod(): void
+    ```
+
+1. <font color=bc0008>【Required】</font>Follow a structured process when using AI tools.
+
+    <font color=29965b>Good example:</font>
+    ```php
+    // 1. Define clear requirements before using AI
+    // 2. Break down complex tasks into smaller, verifiable chunks
+    // 3. Review each AI suggestion independently
+    // 4. Test thoroughly before integration
+    // 5. Document AI usage and review process
+    ```
+
+1. <font color=bc0008>【Required】</font>Never expose sensitive information to AI tools.
+
+    <font color=977919>Note:</font>Be cautious about data privacy and intellectual property when using AI.
+
+    <font color=29965b>Good example:</font>
+    ```php
+    // Sanitize code before AI review:
+    // - Remove API keys and credentials
+    // - Replace business-specific logic with generic examples
+    // - Mask sensitive data patterns
+    // - Use placeholder values for private information
+    ```
+
+1. <font color=bc0008>【Required】</font>Maintain version control discipline with AI-generated code.
+
+    <font color=29965b>Good example:</font>
+    ```php
+    // Commit message:
+    // feat(user-service): Optimize database queries [AI-assisted]
+    //
+    // - Used AI to identify query optimization opportunities
+    // - Implemented suggested indexes and eager loading
+    // - Added performance tests
+    // - Reviewed by: @senior-dev
+    // - Performance improvement: 60% reduction in query time
+    ```
 
